@@ -25,13 +25,22 @@
                 "componentSpecs": [
                     {
                         "metadata": {
-                            "creationTimestamp": "2020-09-22T19:26:45Z"
+                            "creationTimestamp": "2020-09-22T19:28:44Z"
                         },
                         "spec": {
                             "containers": [
                                 {
                                     "name": "smelik-test-default",
-                                    "resources": {}
+                                    "resources": {
+                                        "limits": {
+                                            "cpu": "1",
+                                            "memory": "1Gi"
+                                        },
+                                        "requests": {
+                                            "cpu": "1",
+                                            "memory": "1Gi"
+                                        }
+                                    }
                                 }
                             ]
                         }
