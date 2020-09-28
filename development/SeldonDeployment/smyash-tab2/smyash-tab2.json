@@ -1,0 +1,75 @@
+{
+    "kind": "SeldonDeployment",
+    "apiVersion": "machinelearning.seldon.io/v1alpha2",
+    "metadata": {
+        "name": "smyash-tab2",
+        "namespace": "development",
+        "creationTimestamp": null
+    },
+    "spec": {
+        "name": "smyash-tab2",
+        "predictors": [
+            {
+                "name": "default",
+                "graph": {
+                    "name": "smyash-tab2-default",
+                    "implementation": "SKLEARN_SERVER",
+                    "endpoint": {
+                        "type": "REST"
+                    },
+                    "modelUri": "gs://seldon-models/sklearn/income/model",
+                    "logger": {
+                        "mode": "all"
+                    }
+                },
+                "componentSpecs": [
+                    {
+                        "metadata": {
+                            "creationTimestamp": "2020-09-28T15:32:11Z"
+                        },
+                        "spec": {
+                            "containers": [
+                                {
+                                    "name": "smyash-tab2-default",
+                                    "resources": {
+                                        "limits": {
+                                            "cpu": "300m",
+                                            "memory": "1Gi"
+                                        },
+                                        "requests": {
+                                            "cpu": "300m",
+                                            "memory": "1Gi"
+                                        }
+                                    }
+                                }
+                            ]
+                        },
+                        "hpaSpec": {
+                            "minReplicas": 1,
+                            "maxReplicas": 3,
+                            "metrics": [
+                                {
+                                    "type": "Resource",
+                                    "resource": {
+                                        "name": "cpu",
+                                        "targetAverageUtilization": 5
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "replicas": 1,
+                "engineResources": {},
+                "svcOrchSpec": {},
+                "traffic": 100
+            }
+        ],
+        "annotations": {
+            "seldon.io/engine-seldon-log-messages-externally": "true"
+        },
+        "protocol": "seldon",
+        "transport": "rest"
+    },
+    "status": {}
+}
