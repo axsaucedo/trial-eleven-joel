@@ -1,0 +1,32 @@
+{
+    "kind": "InferenceService",
+    "apiVersion": "serving.kubeflow.org/v1alpha2",
+    "metadata": {
+        "name": "cifar",
+        "namespace": "development",
+        "creationTimestamp": null
+    },
+    "spec": {
+        "default": {
+            "predictor": {
+                "tensorflow": {
+                    "storageUri": "gs://seldon-models/tfserving/cifar10/resnet32",
+                    "resources": {
+                        "limits": {
+                            "cpu": "1",
+                            "memory": "1Gi"
+                        },
+                        "requests": {
+                            "cpu": "1",
+                            "memory": "1Gi"
+                        }
+                    }
+                },
+                "logger": {
+                    "mode": "all"
+                }
+            }
+        }
+    },
+    "status": {}
+}
